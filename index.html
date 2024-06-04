@@ -23,25 +23,12 @@
           <ul class="menu_a">
             <li>
               <a href="/html/movie_list.html">영화</a>
-              <ul class="submenu_a">
-                <li><a href="#">영화1</a></li>
-                <li><a href="#">영화2</a></li>
-              </ul>
             </li>
             <li>
               <a href="/html/map.html">극장</a>
-              <ul class="submenu_c">
-                <li><a href="#">극장1</a></li>
-                <li><a href="#">극장2</a></li>
-              </ul>
+             
             </li>
-            <li>
-              <a href="#">예약</a>
-              <ul class="submenu_b">
-                <li><a href="/html/reservation.html" class="reservation-link">예약1</a></li>
-                <li><a href="/html/reservation.html" class="reservation-link">예약2</a></li>
-              </ul>
-            </li>
+            
           </ul>
           <ul class="menu_b">
             <li id="login-btn"><a href="/html/jinjalogin.html">로그인</a></li>
@@ -114,7 +101,7 @@
   <script>
     function checkLogin() {
       const isLoggedIn = localStorage.getItem('isLoggedIn');
-      if (isLoggedIn) {
+      if (isLoggedIn === 'true') {
         document.getElementById('login-btn').style.display = 'none';
         document.getElementById('signup-btn').style.display = 'none';
         document.getElementById('logout-btn').style.display = 'block';
@@ -125,16 +112,16 @@
       }
     }
 
-    document.getElementById('logout').addEventListener('click', () => {
-      localStorage.removeItem('isLoggedIn');
+    document.getElementById('logout').addEventListener('click', function() {
+      localStorage.setItem('isLoggedIn', 'false');
       alert('로그아웃 되었습니다.');
       window.location.href = '/html/jinjalogin.html';
     });
 
     // 예약 페이지로 이동 시 로그인 확인
     document.querySelectorAll('a.reservation-link').forEach(link => {
-      link.addEventListener('click', function (event) {
-        if (!localStorage.getItem('isLoggedIn')) {
+      link.addEventListener('click', function(event) {
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
           event.preventDefault();
           window.location.href = '/html/jinjalogin.html';
         }
