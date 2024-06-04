@@ -20,15 +20,9 @@
     body{
       background-color: rgb(48, 57, 61);
     }
-
-    /* .container{
-      width: 550px;
-      height: 600px;
-      border-radius: 3px;
-      border: solid 2px black;
-    } */
     .title {
       text-align: center;
+      
       line-height: 2rem;
       font-weight: 700;
     }
@@ -150,124 +144,105 @@
 
 <body>
   <header>
-    <div class="title">
-      <div class="title_name">
-        <a href="/index.html">
-          <img src="/images/logo.png">
-        </a>
+      <div class="title">
+          <div class="title_name">
+              <a href="/index.html">
+                  <img src="/images/logo.png">
+              </a>
+          </div>
+          <div class="title_menu">
+              <nav>
+                  <ul class="menu_a">
+                      <li>
+                          <a href="/html/movie_list.html">영화목록</a>
+                          
+                      </li>
+                      <li>
+                          <a href="#">예약</a>
+                          
+                      </li>
+                      <li>
+                          <a href="#">극장</a>
+                         
+                      </li>
+                  </ul>
+                  <ul class="menu_b">
+                      <li><a href="/html/jinjalogin.html">로그인</a></li>
+                      <li><a href="/html/joinanim.html">회원가입</a></li>
+                  </ul>
+              </nav>
+          </div>
       </div>
-      <div class="title_menu">
-        <nav>
-          <ul class="menu_a">
-            <li>
-              <a href="/html/movie_list.html">목록</a>
-            </li>
-            <li>
-              <a href="#">예약</a>
-            </li>
-            <li>
-              <a href="/html/map.html">극장</a>
-            </li>
-          </ul>
-          <ul class="menu_b">
-            <li><a href="/html/jinjalogin.html">로그인</a></li>
-            <li><a href="/html/joinanim.html">회원가입</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
   </header>
   <div id="wrap">
-    <div id="container">
-      <div class="form-container">
-        <div class="title">로그인</div>
-        <div class="form">
-          <div class="input-group">
-            <label for="id">아이디</label>
-            <input type="text" id="id" placeholder="아이디를 입력하세요.">
+      <div id="container">
+          <div class="form-container">
+              <div class="title">로그인</div>
+              <div class="form">
+                  <div class="input-group">
+                      <label for="id">아이디</label>
+                      <input type="text" id="id" placeholder="아이디를 입력하세요.">
+                  </div>
+                  <div class="input-group">
+                      <label for="pw">비밀번호</label>
+                      <input type="password" id="pw" placeholder="비밀번호를 입력하세요.">
+                  </div>
+                  <div class="forgot">
+                      <a href="idpwfind.html">비밀번호 찾기</a>
+                  </div>
+                  <button type="submit" class="sign" id="login">로그인</button>
+                  <div class="signup">
+                      <span>계정이 없으신가요? <a href="joinanim.html">회원가입</a></span>
+                  </div>
+              </div>
+              <div class="social-message">
+                  <div class="line"></div>
+                  <div class="message">또는</div>
+                  <div class="line"></div>
+              </div>
+              <div class="social-icons">
+                  <a href="https://www.kakaocorp.com/page/" class="icon">
+                      <img src="/images/kakao-icon.png" alt="Kakao">
+                  </a>
+                  <a href="https://toss.im/" class="icon">
+                      <img src="/images/toss-icon.png" alt="Toss">
+                  </a>
+                  <a href="https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/" class="icon">
+                      <img src="/images/naver-icon.png" alt="Naver">
+                  </a>
+              </div>
+              <div class="logo_bottom">
+                <img src="/images/loginlogo_bottom.webp" class="img_bottom">
+              </div>
           </div>
-          <div class="input-group">
-            <label for="pw">비밀번호</label>
-            <input type="password" id="pw" placeholder="비밀번호를 입력하세요.">
-          </div>
-          <div class="forgot">
-            <a href="idpwfind.html">비밀번호 찾기</a>
-          </div>
-
-          <button type="submit" class="sign" id="login">로그인</button>
-          <div class="signup">
-            <span class="profile">계정이 없으신가요? <a href="joinanim.html">회원가입</a></span>
-          </div>
-        </div>
-        <div class="social-message">
-          <div class="line"></div>
-          <div class="message">또는</div>
-          <div class="line"></div>
-        </div>
-        <div class="social-icons">
-          <a href="https://www.kakaocorp.com/page/" class="icon">
-            <img src="/images/kakao-icon.png" alt="Kakao">
-          </a>
-          <a href="https://toss.im/" class="icon">
-            <img src="/images/toss-icon.png" alt="Toss">
-          </a>
-          <a href="https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/" class="icon">
-            <img src="/images/naver-icon.png" alt="Naver">
-          </a>
-        </div>
-        <div class="logo_bottom">
-          <img src="/images/loginlogo_bottom.webp" class="img_bottom">
-        </div>
       </div>
-    </div>
   </div>
-  <script>
-    const id = document.getElementById('id');
-    const password = document.getElementById('pw');
-    const login = document.getElementById('login');
-    const joinmnt = document.getElementById('joinmnt');
-    const find = document.getElementById('find');
+<script>
+  document.getElementById('login').addEventListener('click', async () => {
+    const id = document.getElementById('id').value;
+    const pw = document.getElementById('pw').value;
 
-    login.addEventListener('click', async () => {
-      const res = await sendData();
-      alert(res.msg);
+    const formData = new URLSearchParams();
+    formData.append('id', id);
+    formData.append('pw', pw);
 
-      if (res.code == 0) {
-        location = "/index.html";
-      }
+    const res = await fetch('http://127.0.0.1:8080/vgc/login.jsp', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: formData
     });
 
-    find.addEventListener('click', () => {
-      window.location.href = 'idpwfind.html';
-    });
+    const data = await res.json();
+    alert(data.msg);
 
-    joinmnt.addEventListener('click', () => {
-      window.location.href = 'joinanim.html';
-    });
-
-    async function sendData() {
-      const userId = document.querySelector('#id').value;
-      const userPassword = document.querySelector('#pw').value;
-
-      const formData = new FormData();
-      formData.append('id', userId);
-      formData.append('pw', userPassword);
-
-      const payload = new URLSearchParams(formData);
-
-      const res = await fetch('http://127.0.0.1:8080/vgc/login.jsp', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: payload
-      });
-
-      const data = await res.json();
-      return data;
+    if (data.code === 0) {
+      localStorage.setItem('isLoggedIn', 'true');
+      window.location.href = "/index.html";
     }
-  </script>
-
+  });
+</script>
 </body>
 
 </html>
