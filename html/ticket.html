@@ -75,7 +75,7 @@
           const ticket = await fetch('http://127.0.0.1:8080/vgc/mejsp.jsp');
           const data = await response.json();
           const data_ticket = await ticket.json();
-
+          
           // 웹페이지의 티켓 정보를 업데이트합니다.
           document.getElementById("ticketlocation").innerText = data.location;
           document.getElementById("ticketHall").innerText = data.hall;

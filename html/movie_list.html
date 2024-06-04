@@ -7,8 +7,12 @@
   <title>영화 목록</title>
   <link rel="stylesheet" href="/assets/css/movie_list.css">
   <link rel="icon" href="../images/icon.png" />
+<style>
+  html, body{
+    overflow-x: hidden;
+  }
+</style>
 </head>
-
 <body>
   <!-- ===============헤더===================== -->
   <header>
@@ -25,15 +29,17 @@
               <a href="/html/movie_list.html">영화</a>
             </li>
             <li>
-              <a href="#">예약</a>
-            </li>
-            <li>
               <a href="/html/map.html">극장</a>
             </li>
+            <li>
+              <a href="#">예약</a>
+            </li>
           </ul>
+          
           <ul class="menu_b">
-            <li><a href="/html/jinjalogin.html">로그인</a></li>
-            <li><a href="/html/joinanim.html">회원가입</a></li>
+            <li id="login-btn"><a href="/html/jinjalogin.html">로그인</a></li>
+            <li id="signup-btn"><a href="/html/joinanim.html">회원가입</a></li>
+            <li id="logout-btn" style="display:none;"><a href="#" id="logout">로그아웃</a></li>
           </ul>
         </nav>
       </div>
@@ -54,7 +60,44 @@
 
   <!-- ===============스크립트======================= -->
   <script>
+    function checkLogin() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (isLoggedIn === 'true') { // 로그인 상태를 문자열로 확인
+        document.getElementById('login-btn').style.display = 'none';
+        document.getElementById('signup-btn').style.display = 'none';
+        document.getElementById('logout-btn').style.display = 'block';
+      } else {
+        document.getElementById('login-btn').style.display = 'block';
+        document.getElementById('signup-btn').style.display = 'block';
+        document.getElementById('logout-btn').style.display = 'none';
+      }
+    }
+
+    function handleLogout() {
+      localStorage.setItem('isLoggedIn', 'false'); // 로그아웃 시 로그인 상태를 false로 설정
+      alert('로그아웃 되었습니다.'); // 로그아웃 알림
+      window.location.href = '/html/jinjalogin.html'; // 로그인 페이지로 이동
+    }
+
+    function checkLoginBeforeNavigation(event) {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (isLoggedIn !== 'true') {
+        event.preventDefault(); // 기본 링크 동작을 막음
+        alert('로그인이 필요합니다.');
+        window.location.href = '/html/jinjalogin.html'; // 로그인 페이지로 이동
+      }
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
+      checkLogin(); // 로그인 상태 확인
+
+      // 로그아웃 버튼에 클릭 이벤트 추가
+      document.getElementById('logout').addEventListener('click', function(event) {
+        event.preventDefault(); // 기본 링크 동작을 막음
+        handleLogout(); // 로그아웃 처리
+      });
+
+      // 영화 데이터를 가져옴
       fetch('http://localhost:8080/vgc/Movies.jsp')
         .then(response => {
           if (!response.ok) {
@@ -75,12 +118,14 @@
                   <h2 class="title">${movie.title}</h2>
                   <p class="genre">장르 : ${movie.genre}</p>
                   <p class="rating">⭐${movie.rating}</p>
-                  <p class="release_date">개봉일 : ${movie.release_date}<p>
+                  <p class="release_date">개봉일 : ${movie.release_date}</p>
                   <p class="description">${movie.description}</p>
-                  
                 </div>
               </a>
             `;
+
+            // 영화 목록의 링크에 클릭 이벤트 추가
+            movieDiv.querySelector('a').addEventListener('click', checkLoginBeforeNavigation);
 
             movieList.appendChild(movieDiv);
           });
