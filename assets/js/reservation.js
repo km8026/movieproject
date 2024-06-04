@@ -179,10 +179,6 @@ async function sendData(timeslot, date, hall2) {
     const data = await res.json();
     return data;
 }
-
-
-
-
 function reserveTime(date, hour, hall) {
     const region = regionSelector.value;
     const cinema = cinemaSelector.value;
@@ -190,4 +186,8 @@ function reserveTime(date, hour, hall) {
     const timeEnd = (hour + 2).toString().padStart(2, '0') + ":00"; // 끝 시간을 형식에 맞게 설정합니다.
     alert(`${region} 지역 ${cinema} ${hall}\n${currentMonth + 1}월 ${date}일 ${timeStart} - ${timeEnd}에 예약하였습니다.`); // 예약 완료 메시지를 표시합니다.
     location.href = "/html/Ticketing.html";
+}
+window.onload = function() {
+    const cat = document.getElementById('cat');
+    cat.classList.add('animate');
 }
