@@ -107,19 +107,24 @@ h1 {
 
 #cat {
     position: fixed;
-    width: 20px;
+    width: 100px;
     height: auto;
     bottom: 0;
     left: 0;
 }
 
 @keyframes moveCat {
+    95% {
+        width: 350px;
+        
+      }
     0% {
         left: 0;
     }
     100% {
         left: 100%;
     }
+  
 }
 
 .animate {
