@@ -189,5 +189,5 @@ function reserveTime(date, hour, hall) {
 }
 window.onload = function() {
     const cat = document.getElementById('cat');
-    cat.classList.add('animate');
+    cat.classList.add('animate'); 
 }
