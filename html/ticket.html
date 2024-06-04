@@ -15,7 +15,7 @@
     <div class="title">
       <div class="title_name">
         <a href="/index.html">
-          <img src="/images/logo.png" alt="로고"></img>
+          <img src="/images/logo.png" alt="로고">
         </a>
       </div>
       <div class="title_menu">
@@ -25,15 +25,13 @@
               <a href="/html/movie_list.html">영화</a>
             </li>
             <li>
-              <a href="#">예약</a>
-            </li>
-            <li>
               <a href="/html/map.html">극장</a>
             </li>
           </ul>
           <ul class="menu_b">
-            <li><a href="/html/jinjalogin.html">로그인</a></li>
-            <li><a href="/html/joinanim.html">회원가입</a></li>
+            <li id="login-btn"><a href="/html/jinjalogin.html">로그인</a></li>
+            <li id="signup-btn"><a href="/html/joinanim.html">회원가입</a></li>
+            <li id="logout-btn" style="display:none;"><a href="#" id="logout">로그아웃</a></li>
           </ul>
         </nav>
       </div>
@@ -45,7 +43,7 @@
       <p>다음은 예약한 티켓 정보입니다.</p>
     </div>
     <div class="movie2">
-      <img src="/images/001.jpg" alt="선택한 영화"></img>
+      <img src="/images/001.jpg" alt="선택한 영화">
     </div>
     <div class="ticket">
       <div class="location">
@@ -69,6 +67,24 @@
     </div>
   </div>
   <script>
+    function checkLogin() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (isLoggedIn === 'true') { // 문자열 'true'인지 확인
+        document.getElementById('login-btn').style.display = 'none';
+        document.getElementById('signup-btn').style.display = 'none';
+        document.getElementById('logout-btn').style.display = 'block';
+      } else {
+        document.getElementById('login-btn').style.display = 'block';
+        document.getElementById('signup-btn').style.display = 'block';
+        document.getElementById('logout-btn').style.display = 'none';
+      }
+    }
+
+    function handleLogout() {
+      localStorage.setItem('isLoggedIn', 'false'); // 로그아웃 시 로그인 상태를 false로 설정
+      window.location.href = '/html/jinjalogin.html'; // 로그인 페이지로 리디렉션
+    }
+
     async function fetchData() {
       try {
           const response = await fetch('http://127.0.0.1:8080/vgc/ticket.jsp');
@@ -87,11 +103,19 @@
       } catch (error) {
           console.error('데이터 가져오기 오류:', error);
       }
-  }
+    }
 
-  // 페이지가 로드될 때 fetchData 함수를 호출합니다.
-  window.addEventListener('load', fetchData);
+    // 페이지가 로드될 때 실행될 함수들
+    document.addEventListener('DOMContentLoaded', function() {
+      checkLogin(); // 로그인 상태 확인
+      fetchData(); // 데이터 가져오기
 
+      // 로그아웃 버튼에 클릭 이벤트 추가
+      document.getElementById('logout').addEventListener('click', function(event) {
+        event.preventDefault(); // 기본 링크 동작을 막음
+        handleLogout(); // 로그아웃 처리
+      });
+    });
   </script>
 </body>
 </html>

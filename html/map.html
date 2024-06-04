@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8">
@@ -27,13 +27,12 @@
             <li>
               <a href="/html/map.html">극장</a>
             </li>
-            <li>
-              <a href="/html/movie_list.html">예약</a>
-            </li>
+
           </ul>
           <ul class="menu_b">
-            <li><a href="/html/jinjalogin.html">로그인</a></li>
-            <li><a href="/html/joinanim.html">회원가입</a></li>
+            <li id="login-btn"><a href="/html/jinjalogin.html">로그인</a></li>
+            <li id="signup-btn"><a href="/html/joinanim.html">회원가입</a></li>
+            <li id="logout-btn" style="display:none;"><a href="#" id="logout">로그아웃</a></li>
           </ul>
         </nav>
       </div>
@@ -178,6 +177,38 @@
         this.classList.toggle('active');
       });
     });
+
+    function checkLogin() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (isLoggedIn === 'true') {
+        document.getElementById('login-btn').style.display = 'none';
+        document.getElementById('signup-btn').style.display = 'none';
+        document.getElementById('logout-btn').style.display = 'block';
+      } else {
+        document.getElementById('login-btn').style.display = 'block';
+        document.getElementById('signup-btn').style.display = 'block';
+        document.getElementById('logout-btn').style.display = 'none';
+      }
+    }
+
+    document.getElementById('logout').addEventListener('click', function () {
+      localStorage.setItem('isLoggedIn', 'false');
+      alert('로그아웃 되었습니다.');
+      window.location.href = '/html/jinjalogin.html';
+    });
+
+    // 예약 페이지로 이동 시 로그인 확인
+    document.querySelectorAll('a.reservation-link').forEach(link => {
+      link.addEventListener('click', function (event) {
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+          event.preventDefault();
+          window.location.href = '/html/jinjalogin.html';
+        }
+      });
+    });
+
+    // 페이지 로드 시 로그인 상태 확인
+    window.addEventListener('load', checkLogin);
   </script>
 </body>
 
