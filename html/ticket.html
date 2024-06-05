@@ -27,6 +27,7 @@
             <li>
               <a href="/html/map.html">극장</a>
             </li>
+            <li id="reservation-btn" style="display:none;"><a href="/html/ticket.html">내 예약 조회</a></li>
           </ul>
           <ul class="menu_b">
             <li id="login-btn"><a href="/html/jinjalogin.html">로그인</a></li>
@@ -73,10 +74,12 @@
         document.getElementById('login-btn').style.display = 'none';
         document.getElementById('signup-btn').style.display = 'none';
         document.getElementById('logout-btn').style.display = 'block';
+        document.getElementById('reservation-btn').style.display = 'block';
       } else {
         document.getElementById('login-btn').style.display = 'block';
         document.getElementById('signup-btn').style.display = 'block';
         document.getElementById('logout-btn').style.display = 'none';
+        document.getElementById('reservation-btn').style.display = 'none';
       }
     }
 
