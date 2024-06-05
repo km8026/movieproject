@@ -26,9 +26,9 @@
             </li>
             <li>
               <a href="/html/map.html">극장</a>
-             
             </li>
-            
+            <!-- 예약 정보 버튼을 로그인 상태에서만 보이게 함 -->
+            <li id="reservation-btn" style="display:none;"><a href="/html/ticket.html">내 예약 조회</a></li>
           </ul>
           <ul class="menu_b">
             <li id="login-btn"><a href="/html/jinjalogin.html">로그인</a></li>
@@ -43,12 +43,12 @@
   <!-- ===============몸통부분======================= -->
   <main>
     <div class="main_contents">
-      <div class="popular_movie">
+      <div class="popular_movie glow-on-hover">
         <video autoplay muted>
         </video>
       </div>
       <div class="contents">
-        <div class="movie">
+        <div class="movie glow-on-hover">
           <a href="/html/reservation.html" class="reservation-link">
             <img src="/images/001.jpg" alt="영화1">
             <div class="container">
@@ -57,7 +57,7 @@
             </div>
           </a>
         </div>
-        <div class="movie">
+        <div class="movie glow-on-hover">
           <a href="/html/reservation.html" class="reservation-link">
             <img src="/images/002.jpg" alt="영화2">
             <div class="container">
@@ -66,7 +66,7 @@
             </div>
           </a>
         </div>
-        <div class="movie">
+        <div class="movie glow-on-hover">
           <a href="/html/reservation.html" class="reservation-link">
             <img src="/images/003.jpg" alt="영화3">
             <div class="container">
@@ -75,7 +75,7 @@
             </div>
           </a>
         </div>
-        <div class="movie">
+        <div class="movie glow-on-hover">
           <a href="/html/reservation.html" class="reservation-link">
             <img src="/images/004.jpg" alt="영화4">
             <div class="container">
@@ -105,10 +105,12 @@
         document.getElementById('login-btn').style.display = 'none';
         document.getElementById('signup-btn').style.display = 'none';
         document.getElementById('logout-btn').style.display = 'block';
+        document.getElementById('reservation-btn').style.display = 'block'; // 로그인 상태에서 예약 정보 버튼 표시
       } else {
         document.getElementById('login-btn').style.display = 'block';
         document.getElementById('signup-btn').style.display = 'block';
         document.getElementById('logout-btn').style.display = 'none';
+        document.getElementById('reservation-btn').style.display = 'none'; // 로그인 상태가 아닐 때 예약 정보 버튼 숨김
       }
     }
 
