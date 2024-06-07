@@ -24,22 +24,22 @@ try {
     Class.forName(DRIVER_CLASS_NAME);
     con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
-    String sql = "SELECT seat FROM ticketing ORDER BY ticketingId DESC LIMIT 1"; // 최신 티켓 정보만 가져오기
+    String sql = "SELECT seat FROM ticketing"; // 모든 티켓 정보 가져오기
     stmt = con.createStatement();
     rs = stmt.executeQuery(sql);
 
-    List<String> seatList = new ArrayList<>();
+    List<String> disabledSeats = new ArrayList<>(); // 비활성화된 좌석을 저장할 리스트
 
-    if (rs.next()) {
+    while (rs.next()) {
         String seats = rs.getString("seat");
         String[] seatsArray = seats.split(", ");
         for (String seat : seatsArray) {
-            seatList.add(seat.trim());
+            disabledSeats.add(seat.trim()); // 비활성화된 좌석 추가
         }
     }
 
     ObjectMapper om = new ObjectMapper();
-    out.println(om.writeValueAsString(seatList));
+    out.println(om.writeValueAsString(disabledSeats));
 } catch (Exception e) {
     e.printStackTrace();
 } finally {

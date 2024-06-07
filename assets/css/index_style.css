@@ -1,74 +1,12 @@
-/* ===============공통======================= */
 * {margin: 0; padding: 0;}
 li {list-style: none;}
 a {text-decoration: none;}
-
-/* ===============애니메이션======================= */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideInFromLeft {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
-}
-
-@keyframes slideInFromRight {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-
-@keyframes rainbowGlow {
-  0% { box-shadow: 0 0 20px red, 0 0 30px orange; }
-  20% { box-shadow: 0 0 20px orange, 0 0 30px yellow; }
-  40% { box-shadow: 0 0 20px yellow, 0 0 30px green; }
-  60% { box-shadow: 0 0 20px green, 0 0 30px blue; }
-  80% { box-shadow: 0 0 20px blue, 0 0 30px indigo; }
-  100% { box-shadow: 0 0 20px indigo, 0 0 30px violet; }
-}
-
-@keyframes rotateInOut {
-  0%, 100% {
-    transform: rotateY(0deg) translateZ(0);
-  }
-  25% {
-    transform: rotateY(90deg) translateZ(-200px);
-  }
-  50% {
-    transform: rotateY(180deg) translateZ(0);
-  }
-  75% {
-    transform: rotateY(270deg) translateZ(-200px);
-  }
-}
-
-.fade-in {
-  animation: fadeIn 1s ease-in-out;
-}
-
-.slide-in-left {
-  animation: slideInFromLeft 1s ease-in-out;
-}
-
-.slide-in-right {
-  animation: slideInFromRight 1s ease-in-out;
-}
-
-/* ===============마우스 무지개 빛나는 효과======================= */
-.glow-on-hover {
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.glow-on-hover:hover {
-  animation: rainbowGlow 1s infinite;
-}
 
 /* ===============대가리부분======================= */
 header {
   height: 100px;
   width: 100%;
-  background: linear-gradient(to right, #00131A, #183961); 
+  background: linear-gradient(to right,#00131A, #183961); 
   color: #fff;
   text-align: center;
   position: sticky;
@@ -149,14 +87,15 @@ li > ul {
 }
 
 /* ===============몸통부분======================= */
+
+
 .main_contents {
   height: 100%;
   max-width: 100%;
   margin: auto;
   padding: 20px;
-  background-color: white;
+  background-color: #30393D ;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  perspective: 1000px; /* 3D 효과를 위해 추가 */
 }
 
 .contents {
@@ -165,47 +104,186 @@ li > ul {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  transform-style: preserve-3d; /* 3D 효과를 위해 추가 */
 }
 
 .movie {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: white;
   margin-bottom: 25px;
   width: 100%;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.movie:hover {
-  transform: scale(1.05);
 }
 
 .movie img {
   width: 100%;
   height: auto;
-  border-radius: 5px;
 }
 .container {
   text-align: center;
   padding: 10px 20px;
 }
+@import url('https://fonts.googleapis.com/css?family=Sarala:700|Exo+2:300');
 
-/* 개별 영화 요소 회전 애니메이션 */
-.movie:nth-child(1) {
-  animation: rotateInOut 4s infinite linear;
+.wrapper {
+    width: 210px; /* 기존 280px에서 75%로 줄임 */
+    height: 360px; /* 기존 480px에서 75%로 줄임 */
+
+    position: relative;
 }
 
-.movie:nth-child(2) {
-  animation: rotateInOut 4s infinite linear 1s;
+.card {
+    width: 240px; /* 기존 320px에서 75%로 줄임 */
+    height: 337.5px; /* 기존 450px에서 75%로 줄임 */
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-105px); /* 기존 -140px에서 75%로 줄임 */
+    transition: transform 350ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+    cursor: pointer;
 }
 
-.movie:nth-child(3) {
-  animation: rotateInOut 4s infinite linear 2s;
+.card>div {
+    position: absolute;
+    width: 240px; /* 기존 320px에서 75%로 줄임 */
+    height: 337.5px; /* 기존 450px에서 75%로 줄임 */
+    padding: 25.5px 15.75px; /* 기존 34px 21px에서 75%로 줄임 */
+    transition: all 350ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
 }
 
-.movie:nth-child(4) {
-  animation: rotateInOut 4s infinite linear 3s;
+.front1{
+  background-image: url('/images/001.jpg');
+  background-size: cover;
+  transform: rotateY(0deg) translateZ(160px);
 }
+
+.front2{
+  background-image: url('/images/002.jpg');
+  background-size: cover;
+  transform: rotateY(0deg) translateZ(160px);
+}
+
+.front3{
+
+  background-image: url('/images/003.jpg');
+  background-size: cover;
+  transform: rotateY(0deg) translateZ(160px);
+}
+
+.front4{
+
+  background-image: url('/images/004.jpg');
+  background-size: cover;
+  transform: rotateY(0deg) translateZ(160px);
+
+}
+.right {
+    background-color:#ffffff;
+    transform: rotateY(90deg) translateZ(120px); /* 기존 160px에서 75%로 줄임 */
+}
+
+.card:hover {
+    transform: translateZ(-120px) rotateY(-90deg); /* 기존 -160px에서 75%로 줄임 */
+}
+
+.card:hover .front {
+    opacity: 0;
+}
+
+.card:hover .right {
+    opacity: 1;
+}
+
+.card_h2 {
+  margin-bottom: 10px;
+    color: #000000;
+    margin-left: 10px;
+    font-size: 25px; /* 기존 25px에서 75%로 줄임 */
+    font-family: 'Sarala';
+    font-weight: 700;
+}
+
+@keyframes float {
+    0% {
+        transform: translateZ(15px); /* 기존 20px에서 75%로 줄임 */
+    }
+
+    100% {
+        transform: translateY(-15.75px) translateX(-9.75px) translateZ(22.5px); /* 기존 21px, 13px, 30px에서 75%로 줄임 */
+    }
+}
+
+.card:hover~.img-wrapper img {
+    transform: scale(0.9) translateX(57.75%) translateY(67.5%) rotateZ(80deg); /* 기존 77%, 90%에서 75%로 줄임 */
+}
+
+.card_ul {
+    margin-left: 15.75px; /* 기존 21px에서 75%로 줄임 */
+    padding: 0;
+    font-size: 13px; /* 기존 16px에서 75%로 줄임 */
+    font-weight: 300;
+    list-style: none;
+}
+
+.card_li {
+    padding-bottom: 6px; /* 기존 8px에서 75%로 줄임 */
+    position: relative;
+}
+
+.card_button {
+    position: absolute;
+    right: 15.75px; /* 기존 21px에서 75%로 줄임 */
+    bottom: 25.5px; /* 기존 34px에서 75%로 줄임 */
+    border: solid 1px black;
+    box-shadow: none;
+    background: none;
+    color: inherit;
+    font-family: 'Exo 2';
+    font-weight: 300;
+    font-size: 11.25px; /* 기존 15px에서 75%로 줄임 */
+    letter-spacing: -.25px;
+    font-weight: 700;
+    padding: 9.75px 25.5px; /* 기존 13px 34px에서 75%로 줄임 */
+    background: white;
+    background-size: 125% 100%;
+    background-position: right;
+    cursor: pointer;
+    box-shadow: 6px 3.75px 9.75px rgba(34, 34, 34, .08); /* 기존 8px 5px 13px에서 75%로 줄임 */
+    transform: scale(0) skewY(13deg);
+    transition: all 150ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+    transform-origin: right bottom;
+}
+
+.card:hover button {
+    transform: scale(1) skewY(0);
+    color: gray;
+}
+
+.card:not(:hover) button {
+    opacity: 0;
+}
+
+.card_button:hover {
+    background-position: left;
+}
+
+.price {
+    position: absolute;
+    bottom: 18.75px; /* 기존 25px에서 75%로 줄임 */
+    right: 1px;
+    font-size: 21px; /* 기존 28px에서 75%로 줄임 */
+    text-shadow: -1px 0px #ffffff, 0px 1px #ffffff, 1px 0px #ffffff, 0px -1px #ffffff;
+    color: black;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0.33;
+        transform: scale(.89);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        transform: scale(.67);
+    }
+}
+
 
 /* ===============popular_movie 부분======================= */
 .popular_movie {
@@ -220,12 +298,9 @@ li > ul {
   height: auto;
   border-radius: 5px;
   object-fit: fill;
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.popular_movie video:hover {
-  transform: scale(1.05);
-}
+
 
 /* ===============바닥부분======================= */
 footer {
@@ -234,6 +309,6 @@ footer {
   background: #b9b9b988;
   color: #00000055;
 }
-footer>p {
-  margin-left: 40px;
+footer>p{
+  margin-left: 40px
 }
