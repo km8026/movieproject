@@ -42,7 +42,7 @@
     // 성공 응답을 위한 데이터 맵 구성
     Map<String, Object> map = new HashMap<>();
     map.put("code", 200);
-    map.put("msg", "성공");
+    map.put("msg", "결제 창으로 이동하겠습니다");
 
     // JSON 형식으로 응답
     ObjectMapper om = new ObjectMapper();
